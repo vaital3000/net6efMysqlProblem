@@ -18,6 +18,16 @@ jobs:
         options: >-
           --name mysql
     steps:
+      - uses: actions/setup-dotnet@v1
+        name: setup .net5
+        with:
+          dotnet-version: '5.0.x'
+
+      - uses: actions/setup-dotnet@v1
+        name: setup .net6
+        with:
+          dotnet-version: '6.0.x'
+
       - name: Checkout
         uses: actions/checkout@v2
 
