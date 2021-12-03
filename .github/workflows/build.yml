@@ -1,0 +1,36 @@
+name: Build
+on: [push]
+jobs:
+  run-tests:
+    name: Build artifacts
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    services:
+      mysql:
+        image: percona:5.7.23
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: >-
+          --name mysql
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Nuget packages
+        run: dotnet restore
+
+      - name: Build backend
+        run: dotnet build -c Release --no-restore net6efMysqlProblem.sln
+
+      - name: Net5Test
+        working-directory: ./Net5Tests
+        run: dotnet test -c Release --no-restore --no-build
+
+      - name: Net6Test
+        working-directory: ./Net6Tests
+        run: dotnet test -c Release --no-restore --no-build
