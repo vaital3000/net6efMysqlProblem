@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net5Tests", "Net5Tests\Net5Tests.csproj", "{2E5602CF-9A2F-4BFD-8D8A-4ACB40B46171}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net6Testa", "Net6Testa\Net6Testa.csproj", "{B59056F1-A7C8-4770-A5FB-315A2DEE4F55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net6Tests", "Net6Tests\Net6Tests.csproj", "{B59056F1-A7C8-4770-A5FB-315A2DEE4F55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

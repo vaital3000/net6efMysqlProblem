@@ -34,7 +34,7 @@ jobs:
       - name: Install Nuget packages
         run: dotnet restore
 
-      - name: Build backend
+      - name: Build tests
         run: dotnet build -c Release --no-restore net6efMysqlProblem.sln
 
       - name: Net5Test

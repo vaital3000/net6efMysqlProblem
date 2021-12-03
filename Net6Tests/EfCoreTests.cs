@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Net6Testa
+namespace Net6Tests
 {
 	public class EfCoreTests
 	{

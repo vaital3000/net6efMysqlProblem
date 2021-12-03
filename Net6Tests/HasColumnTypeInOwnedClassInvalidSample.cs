@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Net6Testa
+namespace Net6Tests
 {
-	public static class HasColumnTypeInOwnedClassValidSample
+	public static class HasColumnTypeInOwnedClassInvalidSample
 	{
 		public static async Task TryToGetData()
 		{
@@ -46,15 +46,7 @@ namespace Net6Testa
 			private void BuildMetadata<T>(OwnedNavigationBuilder<T, EntityMetadata> metadata)
 				where T : class
 			{
-				metadata.Property(x => x.IsRemovedInMetadata).IsRequired();
-			}
-
-			protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-			{
-				optionsBuilder
-					.UseMySql(
-						"Server=localhost;Port=3306;Database=test;Uid=root;SSL Mode=None;Allow User Variables=True",
-						new MySqlServerVersion(new Version(5, 7, 28)));
+				metadata.Property(x => x.IsRemovedInMetadata).IsRequired().HasColumnType("bit(1)");
 			}
 
 			public sealed class EntityMetadata
@@ -67,6 +59,14 @@ namespace Net6Testa
 				public int Id { get; set; }
 				public bool IsRemovedInRoot { get; set; }
 				public EntityMetadata Metadata { get; set; }
+			}
+
+			protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+			{
+				optionsBuilder
+					.UseMySql(
+						"Server=localhost;Port=3306;Database=test;Uid=root;SSL Mode=None;Allow User Variables=True",
+						new MySqlServerVersion(new Version(5, 7, 28)));
 			}
 
 		}
